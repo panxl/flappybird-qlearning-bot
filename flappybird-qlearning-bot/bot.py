@@ -14,7 +14,7 @@ class Bot(object):
         self.r = {0: 1, 1: -1000} # Reward function
         self.lr = 0.7
         self.load_qvalues()
-        self.last_state = "420_240_0"
+        self.last_state = "420_240_0_0"
         self.last_action = 0
         self.moves = []
 
@@ -91,6 +91,7 @@ class Bot(object):
 
         X -> [-40,-30...120] U [140, 210 ... 420]
         Y -> [-300, -290 ... 160] U [180, 240 ... 420]
+        Y2 -> [-150, -100 ... 150]
         """
         if xdif < 140:
             xdif = int(xdif) - (int(xdif) % 10)
@@ -102,7 +103,9 @@ class Bot(object):
         else:
             ydif = int(ydif) - (int(ydif) % 60)
 
-        return str(int(xdif))+'_'+str(int(ydif))+'_'+str(vel)
+        ydif2 = int(ydif2) - (int(ydif2) % 50)
+
+        return str(int(xdif))+'_'+str(int(ydif))+'_'+str(int(ydif2))+'_'+str(vel)
 
     def dump_qvalues(self):
         """
